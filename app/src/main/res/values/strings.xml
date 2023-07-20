@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">cleaner</string>
+
+    <string name="title_guide">guide</string>
+    <string name="title_sound">Sound</string>
+    <string name="title_db">dB</string>
+    <string name="title_tone">Tone</string>
+    <string name="title_stereo">Stereo</string>
+    <string name="title_setting">Setting</string>
+
+    <string name="guide_btn">Continue</string>
+
+    <string name="stop">Stop</string>
+
+    <string name="sound_title">Wave Cleaner</string>
+    <string name="sound_info">Clear Dust</string>
+    <string name="sound_hint">Clear Yout Phone with sound</string>
+    <string name="sound_btn">Tap To Start</string>
+
+    <string name="db_title">db Testing</string>
+    <string name="db_btn">Test With Microphone</string>
+    <string name="db_btn1">Test With Camera</string>
+    <string name="db_min">Mininum</string>
+    <string name="db_max">Maximum</string>
+    <string name="db_avg">Average</string>
+    <string name="db_tip">Not testing</string>
+
+    <string name="setting_title">Setting</string>
+    <string name="setting_tip1">Go Pro</string>
+    <string name="setting_tip2">Privacy</string>
+    <string name="setting_tip3">Tearm of Use</string>
+    <string name="setting_tip4">Share</string>
+
+    <string name="tone_title">Tone Generator</string>
+    <string name="tone_btn">Start Generatating</string>
+    <string name="tone_format">Hz</string>
+
+    <string name="stereo_title">Stereo Test</string>
+    <string name="stereo_stereo">Stereo</string>
+    <string name="stereo_bass">Bass</string>
+    <string name="stereo_btn">Start Testing</string>
+</resources>

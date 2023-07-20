@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+   >
+
+    <fragment
+        android:id="@+id/navigation_guide"
+        android:name="com.sonicwave.speakercleaner.fragment.GuideFragment"
+        android:label="@string/title_guide"
+        tools:layout="@layout/fragment_guide" />
+
+    <fragment
+        android:id="@+id/navigation_sound"
+        android:name="com.sonicwave.speakercleaner.fragment.SoundFragment"
+        android:label="@string/title_sound"
+        tools:layout="@layout/fragment_sound" />
+
+    <fragment
+        android:id="@+id/navigation_db"
+        android:name="com.sonicwave.speakercleaner.fragment.DbFragment"
+        android:label="@string/title_db"
+        tools:layout="@layout/fragment_db" />
+
+    <fragment
+        android:id="@+id/navigation_tone"
+        android:name="com.sonicwave.speakercleaner.fragment.ToneFragment"
+        android:label="@string/title_tone"
+        tools:layout="@layout/fragment_tone" />
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.sonicwave.speakercleaner.fragment.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting" />
+
+    <fragment
+        android:id="@+id/navigation_stereo"
+        android:name="com.sonicwave.speakercleaner.fragment.StereoFragment"
+        android:label="@string/title_stereo"
+        tools:layout="@layout/fragment_stereo" />
+
+
+
+</navigation>
+

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.sonicwave.speakercleaner.fragment.SoundFragment" />
+
+
+    </data>
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:text="@string/sound_title"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/sound_info"
+                    android:textColor="@color/f4df0f2"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:alpha="0.5"
+                    android:text="@string/sound_hint"
+                    android:textColor="@color/f4df0f2"
+                    android:textSize="22dp" />
+
+                <FrameLayout
+                    android:id="@+id/icon_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="30dp">
+
+                    <ImageView
+                        isGone="@{vm.isStart}"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/sound_bg" />
+
+                    <com.sonicwave.speakercleaner.view.SoundBgView
+                        isGone="@{!vm.isStart}"
+                        android:id="@+id/bg1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:spread_alpha_distance="8"
+                        app:spread_center_color="#416FF9"
+                        app:spread_delay_milliseconds="35"
+                        app:spread_distance="8"
+                        app:spread_max_radius="150"
+                        app:spread_radius="40"
+                        app:spread_spread_color="#4DF0F2" />
+
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/sound_icon" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:onClick="@{()->vm.start()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@{vm.isStart?@string/stop:@string/sound_btn}"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

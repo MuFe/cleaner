@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.sonicwave.speakercleaner.fragment.GuideFragment" />
+
+
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1C1D20"
+        android:orientation="vertical">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <FrameLayout
+                android:id="@+id/top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@{vm.index==0?@drawable/guide_first:vm.index==1?@drawable/guide_second:@drawable/guide_third}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="67dp"
+                    android:gravity="center"
+                    android:onClick="@{()->vm.click()}"
+                    android:paddingTop="17dp"
+                    android:paddingBottom="17dp"
+                    android:text="@string/guide_btn"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+
+            </FrameLayout>
+
+        </ScrollView>
+
+
+    </FrameLayout>
+</layout>

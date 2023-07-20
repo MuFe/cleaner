@@ -1,0 +1,109 @@
+# compiler: R8
+# compiler_version: 4.0.34
+# common_typos_disable
+# {"id":"com.android.tools.r8.mapping","version":"2.1"}
+# pg_map_id: 7bfea0e
+# pg_map_hash: SHA-256 7bfea0edc72fa0e3402d36ccb66b9a30f10e8f6cea01d2aaf5652cad4dada2c2
+androidx.databinding.library.baseAdapters.BR -> androidx.databinding.library.baseAdapters.BR:
+    1:1:void <init>():3:3 -> <init>
+com.github.nisrulz.zentone.AudioUtilsKt -> com.github.nisrulz.zentone.AudioUtilsKt:
+# {"id":"sourceFile","fileName":"AudioUtils.kt"}
+    1:8:android.media.AudioTrack initAudioTrack(int,int,int):16:23 -> initAudioTrack
+    9:20:android.media.AudioTrack initAudioTrack(int,int,int):19:30 -> initAudioTrack
+    21:29:android.media.AudioTrack initAudioTrack(int,int,int):25:33 -> initAudioTrack
+    30:48:android.media.AudioTrack initAudioTrack(int,int,int):17:35 -> initAudioTrack
+    1:1:void setThreadPriority():13:13 -> setThreadPriority
+    1:13:void setVolumeLevel(android.media.AudioTrack,int):59:71 -> setVolumeLevel
+    1:5:void stopAndRelease(android.media.AudioTrack):48:52 -> stopAndRelease
+    6:8:void stopAndRelease(android.media.AudioTrack):50:52 -> stopAndRelease
+com.github.nisrulz.zentone.BR -> com.github.nisrulz.zentone.BR:
+    1:1:void <init>():3:3 -> <init>
+com.github.nisrulz.zentone.BuildConfig -> com.github.nisrulz.zentone.BuildConfig:
+    1:1:void <init>():6:6 -> <init>
+com.github.nisrulz.zentone.ConstantsKt -> com.github.nisrulz.zentone.ConstantsKt:
+# {"id":"sourceFile","fileName":"Constants.kt"}
+com.github.nisrulz.zentone.DataBinderMapperImpl -> com.github.nisrulz.zentone.DataBinderMapperImpl:
+    android.util.SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP -> a
+    1:1:void <clinit>():19:19 -> <clinit>
+    1:1:void <init>():18:18 -> <init>
+    1:2:java.util.List collectDependencies():67:68 -> collectDependencies
+    1:1:java.lang.String convertBrIdToString(int):61:61 -> convertBrIdToString
+    1:5:androidx.databinding.ViewDataBinding getDataBinder(androidx.databinding.DataBindingComponent,android.view.View,int):23:27 -> getDataBinder
+    6:13:androidx.databinding.ViewDataBinding getDataBinder(androidx.databinding.DataBindingComponent,android.view.View[],int):35:42 -> getDataBinder
+    1:2:int getLayoutId(java.lang.String):55:56 -> getLayoutId
+com.github.nisrulz.zentone.DataBinderMapperImpl$InnerBrLookup -> com.github.nisrulz.zentone.DataBinderMapperImpl$a:
+    android.util.SparseArray sKeys -> a
+    1:4:void <clinit>():73:76 -> <clinit>
+com.github.nisrulz.zentone.DataBinderMapperImpl$InnerLayoutIdLookup -> com.github.nisrulz.zentone.DataBinderMapperImpl$b:
+    java.util.HashMap sKeys -> a
+    1:1:void <clinit>():81:81 -> <clinit>
+com.github.nisrulz.zentone.DataBindingTriggerClass -> com.github.nisrulz.zentone.DataBindingTriggerClass:
+    1:1:void <init>():4:4 -> <init>
+com.github.nisrulz.zentone.ZenTone -> com.github.nisrulz.zentone.ZenTone:
+# {"id":"sourceFile","fileName":"ZenTone.kt"}
+    kotlin.Lazy audioTrack$delegate -> b
+    kotlinx.coroutines.CompletableJob job -> a
+    boolean isPlaying -> c
+    1:15:void <init>(int,int,int):25:39 -> <init>
+    16:16:void <init>(int,int,int,int,kotlin.jvm.internal.DefaultConstructorMarker):25:25 -> <init>
+    1:1:kotlin.coroutines.CoroutineContext getCoroutineContext():33:33 -> getCoroutineContext
+    1:1:boolean isPlaying():42:42 -> isPlaying
+    1:3:void play(float,int,com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator):56:58 -> play
+    4:4:android.media.AudioTrack getAudioTrack():39:39 -> play
+    4:4:void play(float,int,com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator):60 -> play
+    5:12:void play(float,int,com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator):61:68 -> play
+    1:1:void play$default(com.github.nisrulz.zentone.ZenTone,float,int,com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator,int,java.lang.Object):54:54 -> play$default
+    2:2:void play$default(com.github.nisrulz.zentone.ZenTone,float,int,com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator,int,java.lang.Object):51:51 -> play$default
+    1:1:void release():90:90 -> release
+    2:2:android.media.AudioTrack getAudioTrack():39:39 -> release
+    2:2:void release():91 -> release
+    3:3:void release():91:91 -> release
+    1:1:void setPlaying(boolean):42:42 -> setPlaying
+    1:2:void stop():83:84 -> stop
+com.github.nisrulz.zentone.ZenTone$audioTrack$2 -> com.github.nisrulz.zentone.ZenTone$a:
+# {"id":"sourceFile","fileName":"ZenTone.kt"}
+    int $encoding -> b
+    int $channelMask -> c
+    int $sampleRate -> a
+    1:1:android.media.AudioTrack invoke():39:39 -> invoke
+    1:1:java.lang.Object invoke():39 -> invoke
+com.github.nisrulz.zentone.ZenTone$play$1$1 -> com.github.nisrulz.zentone.ZenTone$b:
+# {"id":"sourceFile","fileName":"ZenTone.kt"}
+    com.github.nisrulz.zentone.ZenTone this$0 -> b
+    java.lang.Object L$0 -> a
+    byte[] $audioData -> d
+    android.media.AudioTrack $this_apply -> c
+    1:1:java.lang.Object invoke(kotlinx.coroutines.CoroutineScope,kotlin.coroutines.Continuation):0:0 -> invoke
+    1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object):0 -> invoke
+    1:9:java.lang.Object invokeSuspend(java.lang.Object):68:76 -> invokeSuspend
+com.github.nisrulz.zentone.internal.InternalUtilsKt -> com.github.nisrulz.zentone.internal.InternalUtilsKt:
+# {"id":"sourceFile","fileName":"InternalUtils.kt"}
+    1:1:int minBufferSize(int):11:11 -> minBufferSize
+    1:1:int minBufferSize$default(int,int,java.lang.Object):10:10 -> minBufferSize$default
+    1:1:float sanitizeFrequencyValue(float,int):24:24 -> sanitizeFrequencyValue
+    1:1:float sanitizeFrequencyValue$default(float,int,int,java.lang.Object):20:20 -> sanitizeFrequencyValue$default
+com.github.nisrulz.zentone.wave_generators.SineWaveGenerator -> com.github.nisrulz.zentone.wave_generators.SineWaveGenerator:
+# {"id":"sourceFile","fileName":"SineWaveGenerator.kt"}
+    1:1:void <init>():13:13 -> <init>
+    1:1:double waveFunction(double):20:20 -> calculateData
+    1:1:byte calculateData(int,float,int):17 -> calculateData
+    1:1:byte[] generate(float,int):13:13 -> generate
+com.github.nisrulz.zentone.wave_generators.SquareWaveGenerator -> com.github.nisrulz.zentone.wave_generators.SquareWaveGenerator:
+# {"id":"sourceFile","fileName":"SquareWaveGenerator.kt"}
+    1:1:void <init>():14:14 -> <init>
+    1:1:double waveFunction(double):21:21 -> calculateData
+    1:1:byte calculateData(int,float,int):18 -> calculateData
+    1:1:byte[] generate(float,int):14:14 -> generate
+com.github.nisrulz.zentone.wave_generators.TriangleWaveGenerator -> com.github.nisrulz.zentone.wave_generators.TriangleWaveGenerator:
+# {"id":"sourceFile","fileName":"TriangleWaveGenerator.kt"}
+    1:1:void <init>():14:14 -> <init>
+    1:1:double waveFunction(double):21:21 -> calculateData
+    1:1:byte calculateData(int,float,int):18 -> calculateData
+    1:1:byte[] generate(float,int):14:14 -> generate
+com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator -> com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator:
+# {"id":"sourceFile","fileName":"WaveByteArrayGenerator.kt"}
+com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator$DefaultImpls -> com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator$DefaultImpls:
+# {"id":"sourceFile","fileName":"WaveByteArrayGenerator.kt"}
+    1:15:byte[] generate(com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator,float,int):21:35 -> generate
+    16:16:byte[] generate(com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator,float,int):27:27 -> generate
+    1:1:byte[] generate$default(com.github.nisrulz.zentone.wave_generators.WaveByteArrayGenerator,float,int,int,java.lang.Object):17:17 -> generate$default
