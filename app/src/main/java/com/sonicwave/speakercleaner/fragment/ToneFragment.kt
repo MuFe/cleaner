@@ -11,6 +11,7 @@ import com.github.nisrulz.zentone.wave_generators.SineWaveGenerator
 import com.sonicwave.speakercleaner.R
 import com.sonicwave.speakercleaner.databinding.FragmentSoundBinding
 import com.sonicwave.speakercleaner.databinding.FragmentToneBinding
+import com.sonicwave.speakercleaner.inter.MainHost
 import kotlinx.coroutines.CoroutineScope
 
 
@@ -31,14 +32,21 @@ class ToneFragment() : BaseFragment() {
         return mBinding.root
     }
 
-    fun start(){
+    fun startInfo(isShowAd:Boolean){
         mBinding.sine.start()
         when {
             zenTone.isPlaying -> {
+                if(isShowAd){
+                    ( requireContext() as MainHost).showAd(1)
+                }
+
                 zenTone.stop()
                 isStart.value=false
             }
             else -> {
+               if(isShowAd){
+                   ( requireContext() as MainHost).showAd(0)
+               }
                 isStart.value=true
                 zenTone.play(
                     frequency = value.value!!.toFloat(),
@@ -47,17 +55,22 @@ class ToneFragment() : BaseFragment() {
                 )
             }
         }
+    }
 
+    fun start(){
+        startInfo(true)
     }
 
     fun reduce(){
         value.value=value.value!!-100
         mBinding.sine.frequency=(value.value!!/10).toFloat()
-        mBinding.sine.start()
+        zenTone.stop()
+        startInfo(false)
     }
     fun increase(){
         value.value=value.value!!+100
         mBinding.sine.frequency=(value.value!!/10).toFloat()
-        mBinding.sine.start()
+        zenTone.stop()
+        startInfo(false)
     }
 }

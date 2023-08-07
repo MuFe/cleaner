@@ -2,20 +2,19 @@
 # compiler_version: 4.0.34
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.1"}
-# pg_map_id: 7bfea0e
-# pg_map_hash: SHA-256 7bfea0edc72fa0e3402d36ccb66b9a30f10e8f6cea01d2aaf5652cad4dada2c2
+# pg_map_id: 6cb13e8
+# pg_map_hash: SHA-256 6cb13e8f08bb31e4c17d64845854594e64008b550cc2866ce55d990f1306af52
 androidx.databinding.library.baseAdapters.BR -> androidx.databinding.library.baseAdapters.BR:
     1:1:void <init>():3:3 -> <init>
 com.github.nisrulz.zentone.AudioUtilsKt -> com.github.nisrulz.zentone.AudioUtilsKt:
 # {"id":"sourceFile","fileName":"AudioUtils.kt"}
-    1:8:android.media.AudioTrack initAudioTrack(int,int,int):16:23 -> initAudioTrack
-    9:20:android.media.AudioTrack initAudioTrack(int,int,int):19:30 -> initAudioTrack
-    21:29:android.media.AudioTrack initAudioTrack(int,int,int):25:33 -> initAudioTrack
-    30:48:android.media.AudioTrack initAudioTrack(int,int,int):17:35 -> initAudioTrack
+    1:7:android.media.AudioTrack initAudioTrack(int,int,int):16:22 -> initAudioTrack
+    8:19:android.media.AudioTrack initAudioTrack(int,int,int):18:29 -> initAudioTrack
+    20:28:android.media.AudioTrack initAudioTrack(int,int,int):24:32 -> initAudioTrack
     1:1:void setThreadPriority():13:13 -> setThreadPriority
-    1:13:void setVolumeLevel(android.media.AudioTrack,int):59:71 -> setVolumeLevel
-    1:5:void stopAndRelease(android.media.AudioTrack):48:52 -> stopAndRelease
-    6:8:void stopAndRelease(android.media.AudioTrack):50:52 -> stopAndRelease
+    1:8:void setVolumeLevel(android.media.AudioTrack,int):48:55 -> setVolumeLevel
+    1:5:void stopAndRelease(android.media.AudioTrack):37:41 -> stopAndRelease
+    6:8:void stopAndRelease(android.media.AudioTrack):39:41 -> stopAndRelease
 com.github.nisrulz.zentone.BR -> com.github.nisrulz.zentone.BR:
     1:1:void <init>():3:3 -> <init>
 com.github.nisrulz.zentone.BuildConfig -> com.github.nisrulz.zentone.BuildConfig:

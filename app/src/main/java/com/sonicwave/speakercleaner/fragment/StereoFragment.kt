@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import com.sonicwave.speakercleaner.R
 import com.sonicwave.speakercleaner.databinding.FragmentSoundBinding
 import com.sonicwave.speakercleaner.databinding.FragmentStereoBinding
+import com.sonicwave.speakercleaner.inter.MainHost
 
 
 class StereoFragment() : BaseFragment() {
@@ -33,6 +34,7 @@ class StereoFragment() : BaseFragment() {
 
     fun start(){
         if(isStart.value!!){
+            ( requireContext() as MainHost).showAd(1)
             if(stereoPlayer.isPlaying){
                 stereoPlayer.pause()
             }
@@ -41,6 +43,7 @@ class StereoFragment() : BaseFragment() {
             }
             isStart.value=false
         }else{
+            ( requireContext() as MainHost).showAd(0)
             if(check.value!!){
                 stereoPlayer.start()
             }else{

@@ -5,4 +5,6 @@ interface MainHost {
     fun resetNavToHome()
     fun resetNavToLogin()
 
+    fun showAd(type:Int)
+
 }

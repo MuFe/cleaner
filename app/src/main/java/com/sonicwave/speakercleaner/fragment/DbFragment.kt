@@ -21,6 +21,7 @@ import com.google.common.util.concurrent.ListenableFuture
 import com.mufe.mvvm.library.extension.checkPermissions
 import com.mufe.mvvm.library.util.DpUtil
 import com.sonicwave.speakercleaner.databinding.FragmentDbBinding
+import com.sonicwave.speakercleaner.inter.MainHost
 import com.sonicwave.speakercleaner.model.ActivityViewModel
 import org.koin.android.ext.android.inject
 import java.util.concurrent.ExecutionException
@@ -73,11 +74,12 @@ class DbFragment() : BaseFragment() {
                 max.value = String.format("%.1f", it)
             }
             avg.value = String.format("%.1f", (maxValue + minValue) / 2)
-            mBinding.scaleWheelViewWeight.setValue(((maxValue + minValue) / 20).toFloat())
+            mBinding.scaleWheelViewWeight.setValue((it / 10).toFloat())
         })
     }
 
     fun start() {
+        ( requireContext() as MainHost).showAd(0)
         min.value = "0.0"
         max.value = "0.0"
         avg.value = "0.0"
@@ -85,6 +87,7 @@ class DbFragment() : BaseFragment() {
     }
 
     fun startCamera() {
+        ( requireContext() as MainHost).showAd(0)
         min.value = "0.0"
         max.value = "0.0"
         avg.value = "0.0"
@@ -92,6 +95,7 @@ class DbFragment() : BaseFragment() {
     }
 
     fun stop() {
+        ( requireContext() as MainHost).showAd(1)
         if(isCamera.value!!){
             try {
                 val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()

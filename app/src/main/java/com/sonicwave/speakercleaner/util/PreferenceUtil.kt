@@ -13,6 +13,9 @@ class PreferenceUtil(val context: Context) {
         private const val TOKEN_KEY = "token"
         private const val UID_KEY = "uid"
         private const val FIRST_KEY = "first"
+        private const val SOUND_MASK_KEY = "sound"
+        private const val DB_MASK_KEY = "db"
+        private const val TONE_MASK_KEY = "tone"
     }
 
     private val mSharedPreference =
@@ -38,6 +41,42 @@ class PreferenceUtil(val context: Context) {
         }
     }
 
+    fun getMask(type:Int):Boolean{
+        var key=""
+       when(type){
+           0->{
+               key=SOUND_MASK_KEY
+           }
+           1->{
+               key= DB_MASK_KEY
+           }
+           2->{
+               key= TONE_MASK_KEY
+           }
+       }
+        if(key==""){
+            return false
+        }
+       return mSharedPreference.getBoolean(key,true)
+    }
+
+    fun setMask(type:Int){
+        var key=""
+        when(type){
+            0->{
+                key=SOUND_MASK_KEY
+            }
+            1->{
+                key= DB_MASK_KEY
+            }
+            2->{
+                key= TONE_MASK_KEY
+            }
+        }
+        mSharedPreference.edit {
+            putBoolean(key,false)
+        }
+    }
 
     fun isFirst():Boolean{
         return mSharedPreference.getBoolean(FIRST_KEY,true)

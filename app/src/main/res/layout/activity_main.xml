@@ -141,25 +141,46 @@
             </LinearLayout>
 
         </LinearLayout>
-
+        <FrameLayout
+            android:id="@+id/ad"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_above="@id/nav_view"  />
         <fragment
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/nav_view"
+            android:layout_height="100dp"
+            android:layout_above="@id/ad"
             android:layout_alignParentTop="true"
             app:defaultNavHost="true" />
 
-<!--        <FrameLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="#ee000000">-->
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@color/white"-->
-<!--                android:src="@drawable/mask_sound"/>-->
-<!--        </FrameLayout>-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            isGone="@{vm.maskIndex==-1}"
+            android:onClick="@{()->vm.clickMask()}"
+            android:background="#88000000">
+            <ImageView
+                isGone="@{vm.maskIndex!=0}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:src="@drawable/mask_sound"/>
+            <ImageView
+                isGone="@{vm.maskIndex!=1}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="50dp"
+                android:src="@drawable/mask_db"/>
+            <ImageView
+                isGone="@{vm.maskIndex!=2}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="50dp"
+                android:src="@drawable/mask_tone"/>
+        </FrameLayout>
     </RelativeLayout>
 </layout>

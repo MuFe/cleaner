@@ -14,33 +14,22 @@ fun setThreadPriority() = Process.setThreadPriority(Process.THREAD_PRIORITY_AUDI
 
 fun initAudioTrack(sampleRate: Int, encoding: Int, channelMask: Int): AudioTrack {
     val bufferSize = minBufferSize(sampleRate)
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        AudioTrack.Builder()
-            .setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                    .build()
-            )
-            .setAudioFormat(
-                AudioFormat.Builder()
-                    .setEncoding(encoding)
-                    .setSampleRate(sampleRate)
-                    .setChannelMask(channelMask)
-                    .build()
-            )
-            .setBufferSizeInBytes(bufferSize)
-            .build()
-    } else {
-        AudioTrack(
-            AudioManager.STREAM_MUSIC,
-            sampleRate,
-            channelMask,
-            encoding,
-            bufferSize,
-            AudioTrack.MODE_STREAM
+    return AudioTrack.Builder()
+        .setAudioAttributes(
+            AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build()
         )
-    }
+        .setAudioFormat(
+            AudioFormat.Builder()
+                .setEncoding(encoding)
+                .setSampleRate(sampleRate)
+                .setChannelMask(channelMask)
+                .build()
+        )
+        .setBufferSizeInBytes(bufferSize)
+        .build()
 }
 
 fun AudioTrack.stopAndRelease() {
@@ -63,11 +52,5 @@ fun AudioTrack.setVolumeLevel(level: Int) {
     } else if (tempVolume < 0) {
         tempVolume = 0f
     }
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        // For API >= 21
-        setVolume(tempVolume)
-    } else {
-        // For API < 21
-        setStereoVolume(tempVolume, tempVolume)
-    }
+    setVolume(tempVolume)
 }

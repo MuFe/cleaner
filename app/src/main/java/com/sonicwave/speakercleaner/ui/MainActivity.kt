@@ -4,12 +4,15 @@ package com.sonicwave.speakercleaner.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.google.android.gms.ads.*
 import com.sonicwave.speakercleaner.R
 import com.sonicwave.speakercleaner.inter.MainHost
 import com.sonicwave.speakercleaner.model.ActivityViewModel
@@ -19,15 +22,137 @@ import com.google.android.play.core.review.ReviewManagerFactory
 import com.sonicwave.speakercleaner.databinding.ActivityMainBinding
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.OnUserEarnedRewardListener
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.mufe.mvvm.library.util.DpUtil
 
 class MainActivity : AppCompatActivity(), MainHost {
     private lateinit var mBinding: ActivityMainBinding
     val isHide = MutableLiveData<Boolean>()
     val index = MutableLiveData<Int>()
+    val maskIndex = MutableLiveData<Int>()
     private val mVm: ActivityViewModel by viewModel()
     private val mPreferenceUtil: PreferenceUtil by inject()
+    private val util: DpUtil by inject()
     private lateinit var navController: NavController
+    private  var rewardedAd: RewardedAd?=null
+    private var interstitialAd: InterstitialAd? = null
+    // 插屏广告加载状态的回调
+    private val interstitialAdLoadCallback = object : InterstitialAdLoadCallback() {
+        override fun onAdLoaded(ad: InterstitialAd) {
+            super.onAdLoaded(ad)
+            Log.e("TAG","111111222")
+            // 加载成功
+            interstitialAd = ad
+            // 设置广告事件回调
+            interstitialAd?.fullScreenContentCallback = interstitialAdCallback
+            // 显示插屏广告
+
+        }
+        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+            super.onAdFailedToLoad(loadAdError)
+            // 加载失败
+        }
+    }
+    // 插屏广告相关事件回调
+    private val interstitialAdCallback = object : FullScreenContentCallback() {
+        override fun onAdImpression() {
+            super.onAdImpression()
+            // 被记录为展示成功时调用
+        }
+        override fun onAdShowedFullScreenContent() {
+            super.onAdShowedFullScreenContent()
+            // 显示时调用
+        }
+
+        override fun onAdDismissedFullScreenContent() {
+            super.onAdDismissedFullScreenContent()
+            // 隐藏时调用，此时销毁当前的插屏广告对象，重新加载插屏广告
+            interstitialAd=null
+            loadInterstitialAd()
+        }
+        override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+            super.onAdFailedToShowFullScreenContent(adError)
+            // 展示失败时调用，此时销毁当前的插屏广告对象，重新加载插屏广告
+            interstitialAd=null
+            loadInterstitialAd()
+        }
+    }
+    private val rewardedAdLoadCallback = object : RewardedAdLoadCallback() {
+        override fun onAdLoaded(ad: RewardedAd) {
+            super.onAdLoaded(ad)
+            Log.e("TAG","111111")
+            // 加载成功
+            rewardedAd = ad
+            // 设置广告事件回调
+            rewardedAd?.fullScreenContentCallback = rewardedVideoAdCallback
+            // 展示广告
+        }
+        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+            super.onAdFailedToLoad(loadAdError)
+            // 加载失败
+        }
+    }
+    private val rewardedVideoAdCallback = object : FullScreenContentCallback() {
+        override fun onAdImpression() {
+            super.onAdImpression()
+            // 被记录为展示成功时调用
+        }
+        override fun onAdShowedFullScreenContent() {
+            super.onAdShowedFullScreenContent()
+            // 显示时调用
+        }
+
+        override fun onAdDismissedFullScreenContent() {
+            super.onAdDismissedFullScreenContent()
+            // 隐藏时调用，此时销毁当前的激励视频广告对象，重新加载激励视频广告
+            rewardedAd=null
+            loadRewardedVideoAd()
+        }
+        override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+            super.onAdFailedToShowFullScreenContent(adError)
+            // 展示失败时调用，此时销毁当前的激励视频广告对象，重新加载激励视频广
+            rewardedAd=null
+            loadRewardedVideoAd()
+        }
+    }
+    private val rewardedVideoAdEarnedCallback = OnUserEarnedRewardListener {
+
+    }
+    private var bannerAdView: AdView? = null
+    private val bannerListener = object : AdListener() {
+        override fun onAdLoaded() {
+            super.onAdLoaded()
+            // 广告加载成功
+        }
+        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+            super.onAdFailedToLoad(loadAdError)
+            // 广告加载失败
+        }
+        override fun onAdImpression() {
+            super.onAdImpression()
+            // 被记录为展示成功时调用
+        }
+        override fun onAdClicked() {
+            super.onAdClicked()
+            // 被点击时调用
+        }
+        override fun onAdOpened() {
+            super.onAdOpened()
+            // 广告落地页打开时调用
+        }
+        override fun onAdClosed() {
+            super.onAdClosed()
+            // 广告落地页关闭时调用
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,6 +160,12 @@ class MainActivity : AppCompatActivity(), MainHost {
         mBinding.vm = this
         setContentView(mBinding.root)
         isHide.value = true
+        maskIndex.value=-1
+//        MobileAds.initialize(this) {
+//            loadRewardedVideoAd()
+//            loadInterstitialAd()
+//            createBannerAdView()
+//        }
         mVm.initGoogle(this) {
 
         }
@@ -64,24 +195,39 @@ class MainActivity : AppCompatActivity(), MainHost {
             }
             when (destination.label) {
                 getString(R.string.title_sound) -> {
+                    if(mPreferenceUtil.getMask(0)){
+                        maskIndex.value=0
+                    }
                     index.postValue(0)
                 }
                 getString(R.string.title_db) -> {
+                    if(mPreferenceUtil.getMask(1)){
+                        maskIndex.value=1
+                    }
                     index.postValue(1)
                 }
                 getString(R.string.title_tone) -> {
+                    if(mPreferenceUtil.getMask(2)){
+                        maskIndex.value=2
+                    }
                     index.postValue(2)
                 }
                 getString(R.string.title_stereo) -> {
+                    maskIndex.value=-1
                     index.postValue(3)
                 }
                 getString(R.string.title_setting) -> {
+                    maskIndex.value=-1
                     index.postValue(4)
                 }
             }
         }
     }
 
+    fun clickMask(){
+        mPreferenceUtil.setMask(index.value!!)
+        maskIndex.value=-1
+    }
     fun clickRate() {
         mVm.delayStartRate {
             this.runOnUiThread {
@@ -146,6 +292,52 @@ class MainActivity : AppCompatActivity(), MainHost {
     override fun resetNavToLogin() {
 
     }
+    private fun loadRewardedVideoAd() {
+        // adUnitId为Admob后台创建的激励视频广告的id
+        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917", AdRequest.Builder().build(), rewardedAdLoadCallback)
+    }
 
+
+    private fun loadInterstitialAd() {
+        // adUnitId为Admob后台创建的插屏广告的id
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", AdRequest.Builder().build(), interstitialAdLoadCallback)
+    }
+    private fun createBannerAdView() {
+        // 获取页面的根布局
+        val rootView = mBinding.ad
+        bannerAdView = AdView(this)
+        bannerAdView?.run {
+            // 设置Banner的尺寸
+            setAdSize(AdSize.BANNER)
+            // adUnitId为Admob后台创建的Banner广告的id
+            adUnitId = "ca-app-pub-3940256099942544/6300978111"
+            // 设置广告事件回调
+            adListener = bannerListener
+            val bannerViewLayoutParams = FrameLayout.LayoutParams(util.dp2px(this@MainActivity,50.0f), util.dp2px(this@MainActivity,100.0f))
+            // 设置显示在页面的底部中间
+            bannerViewLayoutParams.gravity =  Gravity.CENTER_HORIZONTAL
+            layoutParams = bannerViewLayoutParams
+
+            // 把 Banner Ad 添加到根布局
+            rootView.addView(this)
+            //加载广告
+            loadAd(AdRequest.Builder().build())
+        }
+    }
+    fun showRewardedAd(){
+        rewardedAd?.show(this, rewardedVideoAdEarnedCallback)
+    }
+
+    fun showInterstitialAd(){
+        interstitialAd?.show(this)
+    }
+
+    override fun showAd(type: Int) {
+        if(type==0){
+            showRewardedAd()
+        }else if(type==1){
+            showInterstitialAd()
+        }
+    }
 
 }

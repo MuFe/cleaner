@@ -18,8 +18,10 @@ import org.koin.android.ext.android.inject
 
 open class BaseFragment : Fragment(), BaseOwner {
     val mPreferenceUtil: PreferenceUtil by inject()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         getBaseModel()?.baseEvent?.observe(viewLifecycleOwner, { event ->
             when (event) {
                 is BaseModel.BaseViewModelEvent.NetworkEvent->{

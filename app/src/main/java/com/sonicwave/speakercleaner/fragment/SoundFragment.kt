@@ -13,6 +13,7 @@ import android.view.animation.ScaleAnimation
 import androidx.lifecycle.MutableLiveData
 import com.sonicwave.speakercleaner.R
 import com.sonicwave.speakercleaner.databinding.FragmentSoundBinding
+import com.sonicwave.speakercleaner.inter.MainHost
 
 
 class SoundFragment() : BaseFragment() {
@@ -78,12 +79,14 @@ class SoundFragment() : BaseFragment() {
 
     fun start(){
         if(player.isPlaying){
+            ( requireContext() as MainHost).showAd(1)
             player.pause()
             mBinding.bg1.stop()
             mBinding.icon.clearAnimation()
             mBinding.icon.clearAnimation()
             isStart.value=false
         }else{
+            ( requireContext() as MainHost).showAd(0)
             isStart.value=true
             player.start()
             mBinding.bg1.start()

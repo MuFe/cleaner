@@ -24,6 +24,7 @@
     <string name="db_max">Maximum</string>
     <string name="db_avg">Average</string>
     <string name="db_tip">Not testing</string>
+    <string name="db_tip1">Testing</string>
 
     <string name="setting_title">Setting</string>
     <string name="setting_tip1">Go Pro</string>

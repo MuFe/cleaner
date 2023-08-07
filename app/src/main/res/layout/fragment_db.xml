@@ -127,7 +127,17 @@
                 android:layout_marginTop="30dp"
                 android:text="@string/db_tip"
                 android:textColor="@color/f4df0f2"
-                android:textSize="16dp" />
+                android:textSize="24dp" />
+
+            <TextView
+                isGone="@{!vm.isStart||vm.isCamera}"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/db_tip1"
+                android:textColor="@color/f4df0f2"
+                android:textSize="30dp" />
 
             <FrameLayout
                 isGone="@{!vm.isCamera}"
@@ -142,6 +152,7 @@
             </FrameLayout>
 
             <View
+                isGone="@{vm.isStart}"
                 android:layout_width="1dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
