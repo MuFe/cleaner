@@ -23,6 +23,7 @@ import com.mufe.mvvm.library.util.DpUtil
 import com.sonicwave.speakercleaner.databinding.FragmentDbBinding
 import com.sonicwave.speakercleaner.inter.MainHost
 import com.sonicwave.speakercleaner.model.ActivityViewModel
+import com.tencent.bugly.crashreport.CrashReport
 import org.koin.android.ext.android.inject
 import java.util.concurrent.ExecutionException
 
@@ -57,6 +58,17 @@ class DbFragment() : BaseFragment() {
             dpUtil.dp2px(requireContext(), 30f),
             dpUtil.dp2px(requireContext(), 12f)
         )
+        addNavLiveData<Boolean> {
+            min.value = "0.0"
+            max.value = "0.0"
+            avg.value = "0.0"
+            if(isCamera.value!!){
+                parseStoragePermissions(true)
+            }else{
+                parseStoragePermission(true)
+            }
+
+        }
         return mBinding.root
     }
 
@@ -73,25 +85,20 @@ class DbFragment() : BaseFragment() {
                 maxValue = it
                 max.value = String.format("%.1f", it)
             }
-            avg.value = String.format("%.1f", (maxValue + minValue) / 2)
+//            avg.value = String.format("%.1f", (maxValue + minValue) / 2)
+            avg.value = String.format("%.1f", it)
             mBinding.scaleWheelViewWeight.setValue((it / 10).toFloat())
         })
     }
 
     fun start() {
         ( requireContext() as MainHost).showAd(0)
-        min.value = "0.0"
-        max.value = "0.0"
-        avg.value = "0.0"
-        parseStoragePermission(true)
+
     }
 
     fun startCamera() {
         ( requireContext() as MainHost).showAd(0)
-        min.value = "0.0"
-        max.value = "0.0"
-        avg.value = "0.0"
-        parseStoragePermissions(true)
+        isCamera.value = true
     }
 
     fun stop() {

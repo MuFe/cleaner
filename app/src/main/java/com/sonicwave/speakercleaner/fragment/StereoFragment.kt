@@ -29,6 +29,14 @@ class StereoFragment() : BaseFragment() {
         isStart.value=false
         bassPlayer=MediaPlayer.create(requireContext(), R.raw.bass)
         stereoPlayer=MediaPlayer.create(requireContext(), R.raw.stereo)
+        addNavLiveData<Boolean> {
+            if(check.value!!){
+                stereoPlayer.start()
+            }else{
+                bassPlayer.start()
+            }
+            isStart.value=true
+        }
         return mBinding.root
     }
 
@@ -44,12 +52,7 @@ class StereoFragment() : BaseFragment() {
             isStart.value=false
         }else{
             ( requireContext() as MainHost).showAd(0)
-            if(check.value!!){
-                stereoPlayer.start()
-            }else{
-                bassPlayer.start()
-            }
-            isStart.value=true
+
         }
     }
 

@@ -30,6 +30,12 @@ class SoundFragment() : BaseFragment() {
         mBinding.lifecycleOwner = this
         mBinding.vm = this
         isStart.value=false
+        addNavLiveData<Boolean> {
+            isStart.value=true
+            player.start()
+            mBinding.bg1.start()
+            mBinding.icon.startAnimation(scaleAnimation)
+        }
         player=MediaPlayer.create(requireContext(), R.raw.cleaner_sound)
         //缩放动画，以中心从1.4倍放大到1.8倍
          scaleAnimation = ScaleAnimation(0.8f, 1.2f, 0.8f, 1.2f,
@@ -77,6 +83,7 @@ class SoundFragment() : BaseFragment() {
         return mBinding.root
     }
 
+    
     fun start(){
         if(player.isPlaying){
             ( requireContext() as MainHost).showAd(1)
@@ -87,10 +94,6 @@ class SoundFragment() : BaseFragment() {
             isStart.value=false
         }else{
             ( requireContext() as MainHost).showAd(0)
-            isStart.value=true
-            player.start()
-            mBinding.bg1.start()
-            mBinding.icon.startAnimation(scaleAnimation)
         }
     }
 }

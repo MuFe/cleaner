@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity(), MainHost {
         override fun onAdFailedToLoad(loadAdError: LoadAdError) {
             super.onAdFailedToLoad(loadAdError)
             // 加载失败
+            Log.e("TAG",loadAdError.message)
         }
     }
     // 插屏广告相关事件回调
@@ -114,6 +115,10 @@ class MainActivity : AppCompatActivity(), MainHost {
             super.onAdDismissedFullScreenContent()
             // 隐藏时调用，此时销毁当前的激励视频广告对象，重新加载激励视频广告
             rewardedAd=null
+            val navController = Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment)
+            if( navController.currentBackStackEntry?.savedStateHandle!=null){
+                navController.currentBackStackEntry?.savedStateHandle!!.set("data",true)
+            }
             loadRewardedVideoAd()
         }
         override fun onAdFailedToShowFullScreenContent(adError: AdError) {
@@ -161,11 +166,11 @@ class MainActivity : AppCompatActivity(), MainHost {
         setContentView(mBinding.root)
         isHide.value = true
         maskIndex.value=-1
-//        MobileAds.initialize(this) {
-//            loadRewardedVideoAd()
-//            loadInterstitialAd()
-//            createBannerAdView()
-//        }
+        MobileAds.initialize(this) {
+            loadRewardedVideoAd()
+            loadInterstitialAd()
+            createBannerAdView()
+        }
         mVm.initGoogle(this) {
 
         }
@@ -335,8 +340,10 @@ class MainActivity : AppCompatActivity(), MainHost {
     override fun showAd(type: Int) {
         if(type==0){
             showRewardedAd()
+            Log.e("TAG","11111")
         }else if(type==1){
             showInterstitialAd()
+            Log.e("TAG","111112")
         }
     }
 
