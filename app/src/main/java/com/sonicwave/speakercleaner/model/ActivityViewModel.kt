@@ -68,12 +68,17 @@ class ActivityViewModel(
 
                 // 平方和除以数据总长度，得到音量大小。
                 var mean = v / r.toDouble()
-                mean=10 * Math.log10(mean)
                 if(mean<0){
                     db.postValue(0.0)
                 }else{
-                    db.postValue(mean)
+                    mean=10 * Math.log10(mean)
+                    if(mean<0){
+                        db.postValue(0.0)
+                    }else{
+                        db.postValue(mean)
+                    }
                 }
+
 
                 // 大概一秒十次
                 delay(100)

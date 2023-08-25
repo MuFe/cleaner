@@ -299,13 +299,16 @@ class MainActivity : AppCompatActivity(), MainHost {
     }
     private fun loadRewardedVideoAd() {
         // adUnitId为Admob后台创建的激励视频广告的id
-        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917", AdRequest.Builder().build(), rewardedAdLoadCallback)
+//        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917", AdRequest.Builder().build(), rewardedAdLoadCallback)
+        RewardedAd.load(this, "ca-app-pub-1654154663629104/1340397288", AdRequest.Builder().build(), rewardedAdLoadCallback)
     }
 
 
     private fun loadInterstitialAd() {
         // adUnitId为Admob后台创建的插屏广告的id
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", AdRequest.Builder().build(), interstitialAdLoadCallback)
+//        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", AdRequest.Builder().build(), interstitialAdLoadCallback)
+
+        InterstitialAd.load(this, "ca-app-pub-1654154663629104/1902723816", AdRequest.Builder().build(), interstitialAdLoadCallback)
     }
     private fun createBannerAdView() {
         // 获取页面的根布局
@@ -313,15 +316,17 @@ class MainActivity : AppCompatActivity(), MainHost {
         bannerAdView = AdView(this)
         bannerAdView?.run {
             // 设置Banner的尺寸
-            setAdSize(AdSize.BANNER)
+
+            setAdSize(AdSize( AdSize.FULL_WIDTH, AdSize.AUTO_HEIGHT))
             // adUnitId为Admob后台创建的Banner广告的id
-            adUnitId = "ca-app-pub-3940256099942544/6300978111"
+//            adUnitId = "ca-app-pub-3940256099942544/6300978111"
+            adUnitId = "ca-app-pub-1654154663629104/7370672915"
             // 设置广告事件回调
             adListener = bannerListener
-            val bannerViewLayoutParams = FrameLayout.LayoutParams(util.dp2px(this@MainActivity,50.0f), util.dp2px(this@MainActivity,100.0f))
+//            val bannerViewLayoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
             // 设置显示在页面的底部中间
-            bannerViewLayoutParams.gravity =  Gravity.CENTER_HORIZONTAL
-            layoutParams = bannerViewLayoutParams
+//            bannerViewLayoutParams.gravity =  Gravity.CENTER_HORIZONTAL
+//            layoutParams = bannerViewLayoutParams
 
             // 把 Banner Ad 添加到根布局
             rootView.addView(this)
