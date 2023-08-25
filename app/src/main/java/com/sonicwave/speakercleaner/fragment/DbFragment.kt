@@ -93,12 +93,11 @@ class DbFragment() : BaseFragment() {
 
     fun start() {
         ( requireContext() as MainHost).showAd(0)
-
     }
 
     fun startCamera() {
-        ( requireContext() as MainHost).showAd(0)
         isCamera.value = true
+        (requireContext() as MainHost).showAd(0)
     }
 
     fun stop() {
@@ -182,7 +181,6 @@ class DbFragment() : BaseFragment() {
             }
         }
         isStart.value = true
-        isCamera.value = true
         startToCamera()
         mVm.startRecord()
     }

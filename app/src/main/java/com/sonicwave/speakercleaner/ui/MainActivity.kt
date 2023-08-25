@@ -330,7 +330,15 @@ class MainActivity : AppCompatActivity(), MainHost {
         }
     }
     fun showRewardedAd(){
-        rewardedAd?.show(this, rewardedVideoAdEarnedCallback)
+        if(rewardedAd==null){
+            val navController = Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment)
+            if( navController.currentBackStackEntry?.savedStateHandle!=null){
+                navController.currentBackStackEntry?.savedStateHandle!!.set("data",true)
+            }
+        }else{
+            rewardedAd!!.show(this, rewardedVideoAdEarnedCallback)
+        }
+
     }
 
     fun showInterstitialAd(){

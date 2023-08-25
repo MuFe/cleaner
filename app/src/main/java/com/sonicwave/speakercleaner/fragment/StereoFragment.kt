@@ -44,15 +44,18 @@ class StereoFragment() : BaseFragment() {
         if(isStart.value!!){
             ( requireContext() as MainHost).showAd(1)
             if(stereoPlayer.isPlaying){
-                stereoPlayer.pause()
+                stereoPlayer.stop()
+                stereoPlayer.release()
+                stereoPlayer=MediaPlayer.create(requireContext(), R.raw.stereo)
             }
             if(bassPlayer.isPlaying){
-                bassPlayer.pause()
+                bassPlayer.stop()
+                bassPlayer.release()
+                bassPlayer=MediaPlayer.create(requireContext(), R.raw.bass)
             }
             isStart.value=false
         }else{
             ( requireContext() as MainHost).showAd(0)
-
         }
     }
 
